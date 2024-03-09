@@ -35,7 +35,7 @@ class Result(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     correct_answer = Column(Integer, default=0)
     level = Column(String)
-    # Если выйдет ошибка, то исправим
+
     user_fk = relationship(User, lazy='subquery')
 
 
@@ -47,7 +47,8 @@ class UserAnswers(Base):
     q_id = Column(Integer, ForeignKey('questions.id'))
     level = Column(String, ForeignKey('users.level'))
     corectness = Column(Boolean, default=False)
+    user_answer = Column(Integer)
+    timer = Column(Time)
 
-    # Если выйдет ошибка, то исправим
     user_fk = relationship(User, foreign_keys=[user_id], lazy='subquery')
     question_fk = relationship(Questions, foreign_keys=[q_id], lazy='subquery')

@@ -26,7 +26,7 @@ def get_all_users_db():
 # Ответы пользователя
 def user_answer_db(user_id, q_id, level, user_answer):
     db = next(get_db())
-    exact_question = db.query(Questions).filter_by(id=q_id).filter()
+    exact_question = db.query(Questions).filter_by(id=q_id).first()
     if exact_question:
         if exact_question.correct_answer == user_answer:
             corectness = True

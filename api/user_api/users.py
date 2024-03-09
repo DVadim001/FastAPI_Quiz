@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 from database.userservice import register_user_db, user_answer_db, plus_point_user_db, get_all_users_db
-from database.testservice import get_questions_db, add_question_db
 
 user_router = APIRouter(prefix='/users', tags=['Работа с пользователями'])
 
