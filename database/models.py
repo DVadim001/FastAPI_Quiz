@@ -11,7 +11,7 @@ class User(Base):
     name = Column(String)
     phone_number = Column(Integer, unique=True)
     level = Column(String, default="None")
-    created_ad = Column(DateTime)
+    created_at = Column(DateTime)
 
 
 # Таблица вопросов
@@ -44,10 +44,10 @@ class UserAnswers(Base):
     __tablename__ = "user_answers"
     id = Column(Integer, autoincrement=True, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    q_id = Column(Integer, ForeignKey('question.id'))
+    q_id = Column(Integer, ForeignKey('questions.id'))
     level = Column(String, ForeignKey('users.level'))
     corectness = Column(Boolean, default=False)
 
     # Если выйдет ошибка, то исправим
-    user_fk = relationship(User, lazy='subquery')
-    question_fk = relationship(Questions, lazy='subquery')
+    user_fk = relationship(User, foreign_keys=[user_id], lazy='subquery')
+    question_fk = relationship(Questions, foreign_keys=[q_id], lazy='subquery')

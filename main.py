@@ -1,14 +1,10 @@
 from fastapi import FastAPI
-from enum import Enum
-
-
-class ModelName(str, Enum):
-    beginner = 'beginner'
-    middle = 'middle'
-    advanced = 'advanced'
-
+from api.user_api.users import user_router
+from database import Base, engine
 
 app = FastAPI(docs_url='/')
+Base.metadata.create_all(bind=engine)
+app.include_router(user_router)
 
 
 @app.get('/')
