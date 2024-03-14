@@ -3,7 +3,9 @@ from api.test_api.tests import test_router
 from api.user_api.users import user_router
 from database import Base, engine
 
-app = FastAPI(docs_url='/')
+app = FastAPI(
+    title="Quiz app",
+    docs_url='/')
 Base.metadata.create_all(bind=engine)
 
 app.include_router(user_router)
